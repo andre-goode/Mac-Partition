@@ -3,13 +3,31 @@
 A step-by-step guide to partitioning the Mac's drive and installing Windows with
 Apple's Boot Camp Assistant so Windows-only games (Teamfight Tactics) can run.
 
+## Downloads
+
+| What | Where | Notes |
+|---|---|---|
+| Windows 10 ISO | <https://www.microsoft.com/en-us/software-download/windows10ISO> | Choose **Windows 10 (multi-edition ISO)**, your language, then **64-bit Download**. The link expires after 24 hours. |
+| Boot Camp drivers (Windows Support Software) | Built into **Boot Camp Assistant** | Downloaded automatically during setup. If you need them again: Boot Camp Assistant > menu bar **Action > Download Windows Support Software**. |
+| Teamfight Tactics / Riot Client | <https://teamfighttactics.leagueoflegends.com> | Download it **inside Windows** with the "Play for free" button. Vanguard installs with it. |
+| Apple Boot Camp help | <https://support.apple.com/boot-camp> | Apple's official instructions. |
+
+Boot Camp Assistant and Time Machine are already on the Mac, so you don't need
+to download them.
+
 ## 0. Check before you start
 
-- **Riot's anti-cheat (Vanguard):** Riot games require Vanguard on Windows. On
-  Windows 11 it requires TPM 2.0 + Secure Boot, which this Mac does **not**
-  have. **Windows 10 (22H2)** is the version Apple's Boot Camp drivers support
-  on this model. Windows 10 is past Microsoft's end of support, so check Riot's
-  current system requirements page before investing the time.
+- **Why Boot Camp:** after TFT moved to Unreal Engine (Patch 18.2, 2026), the
+  Mac version supports only Apple Silicon (M1 and later). Intel Macs like this
+  one have to run the Windows version.
+- **Riot's anti-cheat (Vanguard):** TFT on Windows needs Windows 10 version
+  19041 or newer, or Windows 11 with TPM 2.0. This Mac has no TPM, so use
+  **Windows 10 22H2** (build 19045), which also matches Apple's Boot Camp
+  drivers. Windows 10 stopped getting free updates on Oct 14, 2025, but Riot
+  still lists it as supported.
+- **Graphics:** TFT's minimum GPU is Intel HD 4600 or GeForce 400 series. The
+  Iris Pro 5200 and GeForce GT 750M in this Mac are both above that, so the
+  game should run, though not at max settings.
 - **Free space:** at least 64 GB; aim for **100–128 GB** for Windows + TFT +
   updates.
 - **Back up the Mac** with Time Machine. Repartitioning is usually safe, but a
@@ -22,8 +40,8 @@ Apple's Boot Camp Assistant so Windows-only games (Teamfight Tactics) can run.
 1. Apple menu > System Preferences > Software Update (the newest macOS this
    model supports is Big Sur 11).
 2. Download the **Windows 10 64-bit ISO** from
-   <https://www.microsoft.com/software-download/windows10ISO> (from a Mac the
-   site offers the ISO directly).
+   <https://www.microsoft.com/en-us/software-download/windows10ISO> (from a Mac
+   the site offers the ISO directly; it's about 6 GB).
 
 ## 2. Partition and install with Boot Camp Assistant
 
@@ -49,7 +67,8 @@ Apple's Boot Camp Assistant so Windows-only games (Teamfight Tactics) can run.
 
 ## 4. Install TFT
 
-1. Download the Riot Client from the official League of Legends / TFT site.
+1. In Windows, open Edge and download the Riot Client from
+   <https://teamfighttactics.leagueoflegends.com> ("Play for free").
 2. Install, restart when Vanguard asks you to, and launch TFT.
 3. Suggested starting settings for the Iris Pro / GeForce GT 750M: 1440x900 or
    1680x1050, medium quality, frame cap at 60.
