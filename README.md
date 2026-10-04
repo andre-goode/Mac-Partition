@@ -65,6 +65,28 @@ to download them.
 4. Run **Apple Software Update** (installed with Boot Camp) and **Windows
    Update**.
 
+### Graphics driver (GeForce GT 750M)
+
+In Boot Camp this Mac runs Windows on the **GeForce GT 750M** only; the Iris
+Pro isn't used, so the NVIDIA driver is the one that matters for TFT.
+
+- **Latest driver: NVIDIA 425.31** (April 2019), the last driver NVIDIA made
+  for Kepler notebook GPUs like the GT 750M. NVIDIA's security updates for
+  these GPUs ended in April 2020, so nothing newer is coming.
+- **Where:** <https://www.nvidia.com/Download/index.aspx>, then pick
+  Product Type **GeForce**, Series **GeForce 700M Series (Notebooks)**,
+  Product **GeForce GT 750M**, OS **Windows 10 64-bit**, then **Search**.
+- The 474.xx "Security Update" drivers are for **desktop** Kepler cards and
+  don't list the GT 750M.
+- **If the installer says it "could not find compatible graphics hardware"**
+  (Apple's GPU IDs sometimes trip it up), use the Boot Camp copy instead: run
+  **Apple Software Update**, or re-run `BootCamp\Setup.exe` from the Windows
+  Support Software. If the driver is broken, remove it first with
+  [Display Driver Uninstaller (DDU)](https://www.guru3d.com/download/display-driver-uninstaller-download/)
+  in Safe Mode, then reinstall.
+- To see what's installed now: Device Manager > Display adapters >
+  NVIDIA GeForce GT 750M > Properties > Driver.
+
 ## 4. Install TFT
 
 1. In Windows, open Edge and download the Riot Client from
