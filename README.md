@@ -79,6 +79,29 @@ to download them.
 - From Windows: Boot Camp icon in the system tray > **Restart in macOS**.
 - From macOS: System Preferences > Startup Disk.
 
+## Troubleshooting: "Your disk could not be partitioned"
+
+What fixed it on this Mac:
+
+1. **Delete Time Machine local snapshots** (they block shrinking the drive):
+   `sudo tmutil disable`, then `tmutil listlocalsnapshots /` and
+   `diskutil apfs listSnapshots disk1s1`, and delete each Time Machine snapshot
+   with `sudo diskutil apfs deleteSnapshot disk1s1 -uuid <UUID>`.
+2. **Check how far the drive can shrink:**
+   `diskutil apfs resizeContainer disk0s2 limits`. The "Minimum" must be well
+   below the size macOS will keep.
+3. **Repair file system errors from Recovery Mode** (Command + R > Utilities >
+   Terminal). Find the container with `diskutil list internal` (it was
+   `disk3` in Recovery), then:
+   `diskutil unmountDisk force disk3` and `fsck_apfs -y /dev/disk0s2`
+   (run until it reports no warnings).
+4. **Create the partition manually** back in macOS (macOS keeps 151 GB,
+   Windows gets the rest, about 100 GB):
+   `sudo diskutil apfs resizeContainer disk0s2 151g MS-DOS BOOTCAMP 0`
+5. Boot the Boot Camp USB installer: hold **Option** at startup > **EFI Boot**,
+   then pick the **BOOTCAMP** partition in Windows Setup and click **Format**.
+6. Turn Time Machine back on afterwards: `sudo tmutil enable`.
+
 ## Removing Windows later
 
 Boot Camp Assistant > **Restore** removes the Windows partition and returns the
